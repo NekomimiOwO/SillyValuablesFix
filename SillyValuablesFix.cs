@@ -16,7 +16,7 @@ namespace SillyValuablesFix
     {
         public const string PluginGuid = "com.neko3004.sillyvaluablesfix";
         public const string PluginName = "SillyValuables Fix";
-        public const string PluginVersion = "1.2.1";
+        public const string PluginVersion = "1.2.2";
 
         internal static ManualLogSource Log = null!;
         private Harmony? harmony;
@@ -39,6 +39,7 @@ namespace SillyValuablesFix
                 SafePatch(typeof(Patch_ItemMelee_Start));
                 SafePatch(typeof(Patch_GranadaJogavel_Start));
                 SafePatch(typeof(Patch_GranadaJogavelSemExplosao_Start));
+                SafePatch(typeof(Patch_ItemGun_Start));
 
                 Log.LogInfo($"{PluginName} {PluginVersion} carregado e patches aplicados com sucesso.");
             }
@@ -340,6 +341,27 @@ namespace SillyValuablesFix
 
             GranadaFixer fixer = __instance.gameObject.AddComponent<GranadaFixer>();
             fixer.Setup(__instance);
+        }
+    }
+
+    // ==========================================
+    // ARMAS PRESAS NA CABEÇA DO JOGADOR
+    // ==========================================
+
+    // Golden Deagle, Healing Gun, Freeze Gun e Rainbow Pistol vêm com distanceKeep = 0.
+    // O jogo passa esse valor para PhysGrabber.OverrideGrabDistance sem verificar, então a arma
+    // é puxada para dentro da cabeça do jogador. 0.8 é o valor usado por todas as armas que funcionam.
+    [HarmonyPatch(typeof(ItemGun), "Start")]
+    internal static class Patch_ItemGun_Start
+    {
+        private const float DefaultDistanceKeep = 0.8f;
+
+        private static void Postfix(ItemGun __instance)
+        {
+            if (__instance != null && __instance.distanceKeep <= 0f)
+            {
+                __instance.distanceKeep = DefaultDistanceKeep;
+            }
         }
     }
 
