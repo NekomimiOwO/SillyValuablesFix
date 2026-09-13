@@ -1,0 +1,58 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
+
+    <!-- Replace with the path to your BepInEx folder (varies depending on the mod manager and profile) -->
+    <BepInExDir>YOUR_BEPINEX_FOLDER_PATH_HERE</BepInExDir>
+    
+    <!-- Path to the game's installation folder on Steam -->
+    <GameDir>C:\Program Files (x86)\Steam\steamapps\common\REPO</GameDir>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- BepInEx and Harmony DLLs -->
+    <Reference Include="BepInEx">
+      <HintPath>$(BepInExDir)\core\BepInEx.dll</HintPath>
+    </Reference>
+    <Reference Include="0Harmony">
+      <HintPath>$(BepInExDir)\core\0Harmony.dll</HintPath>
+    </Reference>
+
+    <!-- Original Mod DLL -->
+    <Reference Include="SillyValuables">
+      <HintPath>$(BepInExDir)\plugins\Sangrento-SillyValuables\SillyValuables.dll</HintPath>
+    </Reference>
+
+    <!-- R.E.P.O. Game DLLs -->
+    <Reference Include="Assembly-CSharp">
+      <HintPath>$(GameDir)\REPO_Data\Managed\Assembly-CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>$(GameDir)\REPO_Data\Managed\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>$(GameDir)\REPO_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.PhysicsModule">
+      <HintPath>$(GameDir)\REPO_Data\Managed\UnityEngine.PhysicsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AudioModule">
+      <HintPath>$(GameDir)\REPO_Data\Managed\UnityEngine.AudioModule.dll</HintPath>
+    </Reference>
+
+    <!-- Photon DLLs (Multiplayer) -->
+    <Reference Include="PhotonUnityNetworking">
+      <HintPath>$(GameDir)\REPO_Data\Managed\PhotonUnityNetworking.dll</HintPath>
+    </Reference>
+    <Reference Include="PhotonRealtime">
+      <HintPath>$(GameDir)\REPO_Data\Managed\PhotonRealtime.dll</HintPath>
+    </Reference>
+
+    <AssemblyMetadata Include="AI_Assisted_Creation" Value="This assembly was partially or fully created with the assistance of Generative AI (e.g., Code Suggestions, Refactoring, Documentation Generation)." />
+    <AssemblyMetadata Include="AI_Model_Vendor" Value="Google/Gemini" />
+  </ItemGroup>
+
+</Project>
