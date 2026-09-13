@@ -18,6 +18,7 @@ CustomLogHandler:LogException(Exception, Object) (at SillyValuables/harmony.cs:6
 * **Console/Chat Spam Fix:** Eliminates the `MissingMethodException` thrown when activating grenades.
 * **Audio System Fix:** Replaces obsolete audio calls (`PlayLoop`) with a native 3D audio emitter synchronized with the game's original mine beep sound (`item explosive mine warning beeps`).
 * **Animation and Physics Sync:** Restores pin logic, throw timer, and impact explosion functionality.
+* **Guns Stuck in Head Fix:** Golden Deagle, Healing Gun, Freeze Gun and Rainbow Pistol no longer snap into the player's head when grabbed (their hold distance was 0, now 0.8 like every other gun).
 
 ## Requirements
 
