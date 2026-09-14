@@ -1,3 +1,5 @@
+(I can't believe I just realized I forgot to thank the original mod creator... next time I update I have to remember to include it there.)
+
 # SillyValuables Fix
 
 This mod is a patch for the original **SillyValuables** mod.
